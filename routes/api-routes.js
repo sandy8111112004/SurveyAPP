@@ -1,10 +1,11 @@
-const Note = require('../models/Note');
+const Survey = require('../models/Survey');
 const mongoose = require("mongoose");
 
 module.exports = function (app) {
 
-  app.get('/api/notes', function (req, res) {
-    Note.find({})
+  app.get('/api/survey/:id', function (req, res) {
+
+    Survey.findOne({_id:req.params.id})
       .then(function (data) {
         res.json(data);
       })
@@ -14,8 +15,8 @@ module.exports = function (app) {
   });
 
 
-  app.post('/api/notes', function (req, res) {
-    Note.create(req.body)
+  app.post('/api/survey', function (req, res) {
+    Survey.create(req.body)
       .then(function (data) {
         res.json(data);
       })
@@ -24,8 +25,8 @@ module.exports = function (app) {
       });
   });
 
-  app.delete('/api/notes/:id', function (req, res) {
-    Note.deleteOne({"_id": mongoose.Types.ObjectId(req.params.id)}).then(
+  app.delete('/api/survey/:id', function (req, res) {
+    Survey.deleteOne({"_id": mongoose.Types.ObjectId(req.params.id)}).then(
         function (data) {
             res.json(data);
         }
@@ -36,8 +37,8 @@ module.exports = function (app) {
     )
   });
 
-  app.put('/api/notes/:id', function (req, res) {
-    Note.findOneAndUpdate({ _id: req.params.id }, {$set:{ complete: req.body.complete }})
+  app.put('/api/survey/answer/:id', function (req, res) {
+    Survey.findOneAndUpdate({ _id: req.params.id }, {$push: {answer: req.body.answer} })
       .then(function (data) {
         res.json(data);
       })
