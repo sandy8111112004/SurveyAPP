@@ -1,6 +1,7 @@
 body{
   height: 98vh;
   background-color: white;
+  font-family: 'Raleway', sans-serif;
 }
 
 
@@ -15,3 +16,4 @@ h2{
 p{
   font-size: 14px;
 }
+

@@ -32,7 +32,7 @@ class SurveyContents extends React.Component {
 
 
     handleSubmit=(e)=>{
-        //e.preventDefault();
+        e.preventDefault();
         const url=window.location.href;
         const index = url.indexOf('survey/')
         const id = url.substring(index+7); 
