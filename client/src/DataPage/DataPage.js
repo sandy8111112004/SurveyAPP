@@ -37,7 +37,9 @@ const QuestionEntry = (props) => (
         <div className='question-style'>
         {props.QuestionContents}
         </div>
+        {props.answer?
         <AnswerEntry answerContent={props.answer.find(e => e[0].id === props.questionID)[0].answer} />
+        :"Loading Answers"}
     </div>
 )
 
@@ -46,7 +48,9 @@ const SelectionEntry = (props) => (
         <div className='question-style'>
         {props.SelectionContents}
         </div>
+        {props.answer?
         <AnswerEntry answerContent={props.answer.find(e => e[0].id === props.questionID)[0].answer} />
+        :"Loading Answers"}
     </div>
 )
 
@@ -61,7 +65,7 @@ const PageContens = (props) => (
     <div>
         <nav>
             <Link to={'/'}>Home</Link>  |
-            <Link to={'/api/survey/5c43f9d2f15727502cad2240'}>Wedding Survey Form</Link>
+            <Link to={`/api/survey/${props.pageID}`}>{props.pageTitle} Form</Link>
         </nav>
         On the DataPage
         <button onClick={props.attending}> Attending Rate</button>
@@ -84,7 +88,9 @@ class DataPage extends React.Component {
         selection: [],
         question: [],
         displayIndex: 0,
-        attendingRate: 0
+        attendingRate: 0,
+        pageID:'',
+        pageTitle:''
     }
 
     attendingRate = () => {
@@ -112,7 +118,9 @@ class DataPage extends React.Component {
                 this.setState({
                     surveyData: result.data.answer,
                     selection: result.data.selection,
-                    question: result.data.question
+                    question: result.data.question,
+                    pageID: result.data._id,
+                    pageTitle: result.data.title
                 });
 
             }).then(
@@ -131,6 +139,8 @@ class DataPage extends React.Component {
                         rawData={this.state.surveyData}
                         attending={this.attendingRate}
                         drawchart={this.drawchart}
+                        pageID= {this.state.pageID}
+                        pageTitle={this.state.pageTitle}
                     />
                 </div>
                 <div id='raw-data-display'>

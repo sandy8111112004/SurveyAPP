@@ -27,7 +27,11 @@ const SurveySchema = new Schema({
       answer: String,
       id: String,
     }]
-  ]
+  ],
+  title: {
+    type: String,
+    required: "Must have a title for survey"
+  }
 
 
 });

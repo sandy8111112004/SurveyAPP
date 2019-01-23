@@ -14,6 +14,15 @@ module.exports = function (app) {
       });
   });
 
+  app.get('/api/allSurveys',function(req,res){
+    Survey.find({})
+    .then(function(data){
+      res.json(data);
+    })
+    .catch(function(err){
+      res.json(err);
+    })
+  });
 
   app.post('/api/survey', function (req, res) {
     Survey.create(req.body)
