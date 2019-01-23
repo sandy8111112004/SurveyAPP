@@ -7,9 +7,9 @@ import SurveyPage from './SurveyPage/SurveyPage.js';
 import DataPage from './DataPage/DataPage.js';
 
 const LinkContent =(props) =>(
-  <div>
-  <Link to={`/survey/edit/${props.id}`}>{props.title}</Link>  |
-  </div>
+  <span>
+  <Link to={`/survey/edit/${props.id}`}>  {props.title} </Link>  |   
+  </span>
 )
 
 const Home = (props) =>(
@@ -51,11 +51,11 @@ class App extends Component {
       
       <BrowserRouter>
       <div>
-        {/* { this.state.allSurveys.map( (e,i)=>
-          <Route exact path={`/api/survey/${e._id}`} component={SurveyPage} key ={i}/>)
-        } */}
-         {this.state.allSurveys[0]? <Route exact path={`/api/survey/${this.state.allSurveys[0]._id}`} component={SurveyPage}/>:'waiting'}
-          {this.state.allSurveys[1]?<Route exact path={`/api/survey/${this.state.allSurveys[1]._id}`} component={SurveyPage}/>:'waiting'}
+        { this.state.allSurveys.map( (e,i)=>
+          <Route exact path={`/survey/${e._id}`} component={SurveyPage} key ={i}/>)
+        }
+         {/* {this.state.allSurveys[0]? <Route exact path={`/api/survey/${this.state.allSurveys[0]._id}`} component={SurveyPage}/>:'waiting'}
+          {this.state.allSurveys[1]?<Route exact path={`/api/survey/${this.state.allSurveys[1]._id}`} component={SurveyPage}/>:'waiting'} */}
          <Route exact path='/' 
             render = {()=><Home surveyList={this.state.allSurveys}/>} 
           />

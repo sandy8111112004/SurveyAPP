@@ -92,7 +92,10 @@ class SurveyContents extends React.Component {
                     value={this.state.answer.find(ele=>ele.id===e._id).answer}
                     id={e._id} 
                     key={i} 
-                /> )}
+                /> )
+                
+                
+                }
 
                 
                 <button onClick={this.handleSubmit}>Submit</button>

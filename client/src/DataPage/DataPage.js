@@ -65,10 +65,11 @@ const PageContens = (props) => (
     <div>
         <nav>
             <Link to={'/'}>Home</Link>  |
-            <Link to={`/api/survey/${props.pageID}`}>{props.pageTitle} Form</Link>
+            <Link to={`/survey/${props.pageID}`}>{props.pageTitle} Form</Link>
         </nav>
         On the DataPage
-        <button onClick={props.attending}> Attending Rate</button>
+        {/* <button onClick={props.attending}> Attending Rate</button> */}
+        <div className='chart-box'>
 
         <PieChart
             data={[
@@ -77,9 +78,21 @@ const PageContens = (props) => (
                 { title: 'Three', value: 20, color: '#6A2135' }]}
             radius={20}
         />
-
+        {/* <drawPieChart data={}/> */}
+        
+        </div>
     </div>
 )
+
+const drawPieChart =(props)=>(
+    <div>
+        <PieChart
+            data={props.data}
+            radius={20}
+        />
+    </div>
+)
+
 
 class DataPage extends React.Component {
 
@@ -104,6 +117,21 @@ class DataPage extends React.Component {
         this.setState({ attendingRate: result });
     }
 
+    chartData = () =>{
+        const answerData =this.state.surveyData;
+        const chartNum=answerData[0].filter(data=>data[0].id);
+        for(let i=0;i<chartNum.length;i++){
+            let filteredArr=answerData.map(resultArr=>resultArr.filter(data=>data[0].id===chartNum[i]));
+            isNaN(filteredArr[0])?this.ynAnswer() :this.numAnswer() ;
+        }
+    }
+    ynAnswer=()=>{
+
+    }
+    numAnswer=()=>{
+
+    }
+
     displayHandler = (id) => {
         //e.preventDefault();
         this.setState({ displayIndex: id });
@@ -121,11 +149,12 @@ class DataPage extends React.Component {
                     question: result.data.question,
                     pageID: result.data._id,
                     pageTitle: result.data.title
+                }, function(){
+                   // this.attendingRate();
+                    
                 });
 
-            }).then(
-                this.attendingRate()
-            );
+            });
     }
 
 
