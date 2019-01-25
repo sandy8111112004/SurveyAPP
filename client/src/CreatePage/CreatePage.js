@@ -74,21 +74,21 @@ class CreatePage extends Component{
     handleAdd=(e)=>{
         e.preventDefault();
         let previous = this.state.questionList;
-        console.log('1',previous);
+
         if(this.state.createQuestion){
             previous.question.push({questionContent:`${this.state.createQuestion}`});
-            console.log('2',previous);
+
         }
         if(this.state.createSelection && this.state.createOption){
             let optionArr=this.state.createOption.split(",")
             optionArr = optionArr.map(e=>e.trim());
-            // optionArr = optionArr.unshift(" ");
+            optionArr.unshift("");
             previous.selection.push({question:`${this.state.createSelection}`, options:optionArr});
-            console.log('3',previous);
+
         }
         if(this.state.createTitle){
             previous.title=`${this.state.createTitle}`;
-            console.log('4',previous);
+
         }
         
         this.setState({questionList:previous});
