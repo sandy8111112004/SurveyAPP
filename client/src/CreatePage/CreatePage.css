@@ -1,0 +1,12 @@
+#create-survey-box, #append-box{
+    margin-left: 20vw; 
+    width: 60vw;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    text-align: center;
+    line-height: 2;
+  background-color: #f3f4f4;
+  border-radius: 10px;
+  box-shadow:0px 2px 5px 5px #666666;
+}

@@ -1,0 +1,12 @@
+.survey-entry-box {
+    width: 200px;
+    height: 200px;
+    background-color: #b2babb;
+    margin: 20px;
+    text-align: center;
+    line-height: 190px;
+    transition: background-color 2s;
+}
+.survey-entry-box:hover {
+    background-color: transparent;
+}
