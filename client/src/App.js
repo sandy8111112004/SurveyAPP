@@ -37,6 +37,17 @@ class App extends Component {
     })
   }
 
+  handleDelete=(id)=>{
+    $.delete(`/api/survey/${id}`)
+    .then((result)=>{
+      $.get(`/api/allSurveys`)
+      .then((result)=>{
+          this.setState({allSurveys: result.data});
+      })
+    });
+  }
+
+
 
   render() {
     return (
@@ -49,7 +60,7 @@ class App extends Component {
          {/* {this.state.allSurveys[0]? <Route exact path={`/api/survey/${this.state.allSurveys[0]._id}`} component={SurveyPage}/>:'waiting'}
           {this.state.allSurveys[1]?<Route exact path={`/api/survey/${this.state.allSurveys[1]._id}`} component={SurveyPage}/>:'waiting'} */}
          <Route exact path='/' 
-            render = {()=><Home surveyList={this.state.allSurveys}/>} 
+            render = {()=><Home surveyList={this.state.allSurveys} handleDelete={this.handleDelete}/>} 
           />
          {/* <Route exact path='/survey/edit/5c43f9d2f15727502cad2240' component={DataPage}/> */}
          { this.state.allSurveys.map( (e,i)=>

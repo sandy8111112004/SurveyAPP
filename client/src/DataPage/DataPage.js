@@ -39,7 +39,7 @@ const QuestionEntry = (props) => (
         </div>
         {props.answer?
         <AnswerEntry answerContent={props.answer.find(e => e[0].id === props.questionID)[0].answer} />
-        :"Loading Answers"}
+        :"No Answer"}
     </div>
 )
 
@@ -50,14 +50,16 @@ const SelectionEntry = (props) => (
         </div>
         {props.answer?
         <AnswerEntry answerContent={props.answer.find(e => e[0].id === props.questionID)[0].answer} />
-        :"Loading Answers"}
+        :"No Answer"}
     </div>
 )
 
 
 const DataList = (props) => (
     <div>
-        <li className='dataEntry' onClick={() => props.handleDisplay(props.index)}> {props.entry[0][0].answer}</li>
+        <li className='dataEntry' onClick={() => props.handleDisplay(props.index)}> {props.entry[0][0].answer} 
+        <span><button onClick={()=>props.answerDeleteHandler(props.index)}>Delete</button></span></li>
+        
     </div>
 )
 
@@ -157,7 +159,26 @@ class DataPage extends React.Component {
             });
     }
 
-
+    handleAnswerDelete = (index)=>{
+        const url = window.location.href;
+        const StringIndex = url.indexOf('edit/')
+        const id = url.substring(StringIndex + 5);
+        $.delete(`/api/survey/answer/${id}/${index}`)
+        .then(
+            (result) =>{
+                this.setState({
+                    surveyData: result.data.answer,
+                    selection: result.data.selection,
+                    question: result.data.question,
+                    pageID: result.data._id,
+                    pageTitle: result.data.title
+                }, function(){
+                   // this.attendingRate();
+                    
+                });
+            }
+        );
+    }
 
     render() {
         return (
@@ -182,6 +203,7 @@ class DataPage extends React.Component {
                                         key={i}
                                         index={i}
                                         handleDisplay={this.displayHandler}
+                                        answerDeleteHandler={this.handleAnswerDelete}
                                     />) : 'Loading...'}
                             </ul>
                         </div>

@@ -88,10 +88,13 @@ class CreatePage extends Component{
         }
         if(this.state.createTitle){
             previous.title=`${this.state.createTitle}`;
+        }        
+        this.setState({questionList:previous,
+            createSelection:'',
+            createQuestion:'',
+            createOption:'',
+            createTitle:'',});
 
-        }
-        
-        this.setState({questionList:previous});
     }
 
     handleSubmit=(e)=>{

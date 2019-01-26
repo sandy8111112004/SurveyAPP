@@ -14,6 +14,7 @@ const LinkContent =(props) =>(
 const SurveyEntryBox=(props)=>(
     <div className="survey-entry-box">
         {<LinkContent id={props.id} title={props.title}/>}
+        <button onClick={()=>props.deleteHandler(props.id)}>Delete</button>
     </div>
 )
 
@@ -28,7 +29,7 @@ const Home = (props) =>(
       </nav>
       Home page
       <Grid>
-        {props.surveyList? props.surveyList.map((e,i)=><SurveyEntryBox id={e._id} title={e.title} key={i} />): 'Loading'}
+        {props.surveyList? props.surveyList.map((e,i)=><SurveyEntryBox deleteHandler={props.handleDelete} id={e._id} title={e.title} key={i} />): 'Loading'}
       </Grid>
     </div>
 )
