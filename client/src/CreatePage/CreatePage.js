@@ -20,6 +20,7 @@ const Selection = (props) =>(
 const Question = (props) => (
     <div>
         <p className='questionStyle'>{props.question}</p>
+        <input></input>
     </div>
 )
 
@@ -38,10 +39,12 @@ const AppendBox=(props)=>(
         <p className='questionStyle'>"Please enter the title of your survey."</p>
         <input name="createTitle" value={props.titleValue} onChange={props.changeHandler}></input>
         </div>
+        <button onClick={props.addHandler}>Add</button>
     <div>
         <p className='questionStyle'>"Please enter your question here."</p>
         <input name="createQuestion" value={props.questionValue} onChange={props.changeHandler}></input>
     </div>
+    <button onClick={props.addHandler}>Add</button>
     <div>
         <p className='questionStyle'>"Please enter your question for multi-selection here."</p>
         <input name="createSelection" value={props.selectionValue} onChange={props.changeHandler}></input>
@@ -102,7 +105,14 @@ class CreatePage extends Component{
         $.post(`/api/survey/`,this.state.questionList)
         .then(
             (result)=>{
-                alert('Thank you for submit the Survey!');           
+                alert('Thank you for submit the Survey!');     
+                this.setState({
+                    questionList:{
+                        selection:[],
+                        question:[],
+                        title:''
+                    }
+                });      
             }
         )
     }
