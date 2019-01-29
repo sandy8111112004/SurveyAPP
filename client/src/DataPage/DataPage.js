@@ -72,15 +72,17 @@ const PageContens = (props) => (
         On the DataPage
         {/* <button onClick={props.attending}> Attending Rate</button> */}
         <div className='chart-box'>
-
-        <PieChart
-            data={[
-                { title: 'One', value: 10, color: '#E38627' },
-                { title: 'Two', value: 15, color: '#C13C37' },
-                { title: 'Three', value: 20, color: '#6A2135' }]}
-            radius={20}
-        />
-        {/* <drawPieChart data={}/> */}
+        <button onClick={props.checkData} >Check Data</button>
+        {/* {console.log(props.dataCal)} */}
+        {props.dataCal?props.dataCal.map((e,i)=>props.dataCal.length===1?<div>{e.quantity}</div>:<drawPieChart key={i}/>):'wait'}
+        {/* // <PieChart
+        //     data={[
+        //         { title: 'One', value: 10, color: '#E38627' },
+        //         { title: 'Two', value: 15, color: '#C13C37' },
+        //         { title: 'Three', value: 20, color: '#6A2135' }]}
+        //     radius={20}
+        // /> */}
+        
         
         </div>
     </div>
@@ -88,8 +90,15 @@ const PageContens = (props) => (
 
 const drawPieChart =(props)=>(
     <div>
-        <PieChart
+        {/* <PieChart
             data={props.data}
+            radius={20}
+        /> */}
+        <PieChart
+            data={[
+                { title: 'One', value: 10, color: '#E38627' },
+                { title: 'Two', value: 15, color: '#C13C37' },
+                { title: 'Three', value: 20, color: '#6A2135' }]}
             radius={20}
         />
     </div>
@@ -105,33 +114,56 @@ class DataPage extends React.Component {
         displayIndex: 0,
         attendingRate: 0,
         pageID:'',
-        pageTitle:''
+        pageTitle:'',
+        dataCal:[]
     }
 
-    attendingRate = () => {
+    // attendingRate = () => {
+    //     //e.preventDefault();
+    //     let result = 0;
+    //     let answerarr = this.state.surveyData.map(resultArr => resultArr.filter(data => data[0].id === '5c43f9d2f15727502cad2244'));
+    //     answerarr = answerarr.filter(e => e[0][0].answer === 'Yes');
+    //     result = answerarr.length / this.state.surveyData.length;
+    //     result = parseFloat(result.toFixed(2));
+    //     console.log('Attending Rate: ', result);
+    //     this.setState({ attendingRate: result });
+    // }
+
+    // chartData = () =>{
+    //     const answerData =this.state.surveyData;
+    //     const chartNum=answerData[0].filter(data=>data[0].id);
+    //     for(let i=0;i<chartNum.length;i++){
+    //         let filteredArr=answerData.map(resultArr=>resultArr.filter(data=>data[0].id===chartNum[i]));
+    //         isNaN(filteredArr[0])?this.ynAnswer() :this.numAnswer() ;
+    //     }
+    // }
+
+    dataAnalysis=()=>{
         //e.preventDefault();
-        let result = 0;
-        let answerarr = this.state.surveyData.map(resultArr => resultArr.filter(data => data[0].id === '5c43f9d2f15727502cad2244'));
-        answerarr = answerarr.filter(e => e[0][0].answer === 'Yes');
-        result = answerarr.length / this.state.surveyData.length;
-        result = parseFloat(result.toFixed(2));
-        console.log('Attending Rate: ', result);
-        this.setState({ attendingRate: result });
-    }
-
-    chartData = () =>{
-        const answerData =this.state.surveyData;
-        const chartNum=answerData[0].filter(data=>data[0].id);
-        for(let i=0;i<chartNum.length;i++){
-            let filteredArr=answerData.map(resultArr=>resultArr.filter(data=>data[0].id===chartNum[i]));
-            isNaN(filteredArr[0])?this.ynAnswer() :this.numAnswer() ;
+        const lenSel = this.state.selection.length;
+        const lenQue = this.state.question.length;
+        const drawingData = this.state.surveyData;
+        let numArr = [];
+        
+        for(let i=0;i<lenSel;i++){
+            numArr[i]=[0];
+            for(let j=0;j<drawingData.length;j++){
+                if(!isNaN(drawingData[j][lenQue+i][0].answer)){
+                    numArr[i][0] += parseFloat(drawingData[j][lenQue+i][0].answer);
+                }else{
+                    // console.log(drawingData[j][lenQue+i][0].answer);
+                    if(numArr[i].find(e=>e.option === drawingData[j][lenQue+i][0].answer)){
+                        let index=numArr[i].findIndex(e=>e.option===drawingData[j][lenQue+i][0].answer);
+                        numArr[i][index].quantity += 1;
+                    }else{
+                        numArr[i].push({option: drawingData[j][lenQue+i][0].answer, quantity: 1 });
+                    }
+                }
+            }
+            
         }
-    }
-    ynAnswer=()=>{
-
-    }
-    numAnswer=()=>{
-
+        console.log(numArr);
+        this.setState({dataCal:numArr});
     }
 
     displayHandler = (id) => {
@@ -153,7 +185,7 @@ class DataPage extends React.Component {
                     pageTitle: result.data.title
                 }, function(){
                    // this.attendingRate();
-                    
+                    //this.dataAnalysis();
                 });
 
             });
@@ -187,10 +219,11 @@ class DataPage extends React.Component {
                 <div>
                     <PageContens
                         rawData={this.state.surveyData}
-                        attending={this.attendingRate}
+                        dataCal={this.dataCal}
                         drawchart={this.drawchart}
                         pageID= {this.state.pageID}
                         pageTitle={this.state.pageTitle}
+                        checkData = {this.dataAnalysis}
                     />
                 </div>
                 <div id='raw-data-display'>
