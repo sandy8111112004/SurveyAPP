@@ -7,6 +7,22 @@ import PieChart from 'react-minimal-pie-chart';
 import * as $ from 'axios';
 
 
+const DrawPieChart =(props)=>(
+    <div>
+        {props.data.length!==0?<PieChart
+            data={props.data}
+            radius={20}
+        />:null}
+    </div>
+)
+
+const ResultDataList =(props)=>(
+    <div>
+        {props.content}
+    </div>
+
+)
+
 const DetailedSurvey = (props) => (
     <div>
         {props.question.map((e, i) =>
@@ -70,37 +86,15 @@ const PageContens = (props) => (
             <Link to={`/survey/${props.pageID}`}>{props.pageTitle} Form</Link>
         </nav>
         On the DataPage
-        {/* <button onClick={props.attending}> Attending Rate</button> */}
+
         <div className='chart-box'>
-        <button onClick={props.checkData} >Check Data</button>
-        {/* {console.log(props.dataCal)} */}
-        {/*props.dataCal?props.dataCal.map((e,i)=>props.dataCal.length===1?<div>{e.quantity}</div>:<drawPieChart key={i}/>):'wait'*/}
-        {/* // <PieChart
-        //     data={[
-        //         { title: 'One', value: 10, color: '#E38627' },
-        //         { title: 'Two', value: 15, color: '#C13C37' },
-        //         { title: 'Three', value: 20, color: '#6A2135' }]}
-        //     radius={20}
-        // /> */}
-        
+
+
+        {props.dataCal?props.dataCal.map((e,i)=>e.length===1?<ResultDataList content={e[0]} key={i}/>:<DrawPieChart data={e.slice(1,e.length)} key={i} colorArr={props.colorArr}/>):'wait'}
+     
+       
         
         </div>
-    </div>
-)
-
-const drawPieChart =(props)=>(
-    <div>
-        {/* <PieChart
-            data={props.data}
-            radius={20}
-        /> */}
-        <PieChart
-            data={[
-                { title: 'One', value: 10, color: '#E38627' },
-                { title: 'Two', value: 15, color: '#C13C37' },
-                { title: 'Three', value: 20, color: '#6A2135' }]}
-            radius={20}
-        />
     </div>
 )
 
@@ -115,7 +109,8 @@ class DataPage extends React.Component {
         attendingRate: 0,
         pageID:'',
         pageTitle:'',
-        dataCal:[]
+        dataCal:[],
+        colorArr:['#E38627', '#C13C37','#6A2135','#35A5A5', 'FB0A27','0AFB14']
     }
 
     // attendingRate = () => {
@@ -152,17 +147,17 @@ class DataPage extends React.Component {
                     numArr[i][0] += parseFloat(drawingData[j][lenQue+i][0].answer);
                 }else{
                     // console.log(drawingData[j][lenQue+i][0].answer);
-                    if(numArr[i].find(e=>e.option === drawingData[j][lenQue+i][0].answer)){
-                        let index=numArr[i].findIndex(e=>e.option===drawingData[j][lenQue+i][0].answer);
-                        numArr[i][index].quantity += 1;
+                    if(numArr[i].find(e=>e.title === drawingData[j][lenQue+i][0].answer)){
+                        let index=numArr[i].findIndex(e=>e.title===drawingData[j][lenQue+i][0].answer);
+                        numArr[i][index].value += 1;
                     }else{
-                        numArr[i].push({option: drawingData[j][lenQue+i][0].answer, quantity: 1 });
+                        numArr[i].push({title: drawingData[j][lenQue+i][0].answer, value: 1, color:this.state.colorArr[(j+i)%5]});
                     }
                 }
             }
             
         }
-        console.log(numArr);
+        //console.log(numArr);
         this.setState({dataCal:numArr});
     }
 
@@ -177,7 +172,7 @@ class DataPage extends React.Component {
         const id = url.substring(index + 5);
         $.get(`/api/survey/${id}`)
             .then((result) => {
-                console.log("hit the first cb")
+                //console.log("hit the first cb")
                 this.setState({
                     surveyData: result.data.answer,
                     selection: result.data.selection,
@@ -185,7 +180,7 @@ class DataPage extends React.Component {
                     pageID: result.data._id,
                     pageTitle: result.data.title
                 }, function(){
-                    console.log("hit the second cb")
+                   // console.log("hit the second cb")
                    // this.attendingRate();
                     this.dataAnalysis();
                 });
@@ -208,7 +203,7 @@ class DataPage extends React.Component {
                     pageTitle: result.data.title
                 }, function(){
                    // this.attendingRate();
-                    
+                   this.dataAnalysis();
                 });
             }
         );
@@ -221,11 +216,12 @@ class DataPage extends React.Component {
                 <div>
                     <PageContens
                         rawData={this.state.surveyData}
-                        dataCal={this.dataCal}
+                        dataCal={this.state.dataCal}
                         drawchart={this.drawchart}
                         pageID= {this.state.pageID}
                         pageTitle={this.state.pageTitle}
                         checkData = {this.dataAnalysis}
+                        colorArr={this.state.colorArr}
                     />
                 </div>
                 <div id='raw-data-display'>
