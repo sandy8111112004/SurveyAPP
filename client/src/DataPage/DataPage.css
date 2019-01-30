@@ -48,5 +48,49 @@
 }
 
 .chart-box{
-    width: 40vw;
+    width: 30vw;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 60% 40%;
+}
+
+.color-box{
+    width: 14px;
+    height: 13px;
+    display: inline-block;
+    
+}
+
+/* #pie-box{
+    display: inline-block;
+    background-color: #666666;
+    height: 40vh;
+} */
+
+.box{
+    display: grid;
+    grid-column: span 1;
+    grid-row: span 1;
+}
+.legend-box{
+    height:20px;
+}
+div{
+    margin: 0;
+}
+
+#deleteListBtn{
+    float:right;
+    margin:4px;
+    background-color: #d5f3f3;
+    height: 24px;
+    transition: background-color 1s;
+    border: #d5f3f3 2px;
+    border-radius: 3px;
+}
+
+#deleteListBtn:hover{
+    background-color: #3da595;
+    cursor: pointer;
 }
