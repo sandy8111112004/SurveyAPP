@@ -74,7 +74,7 @@ const PageContens = (props) => (
         <div className='chart-box'>
         <button onClick={props.checkData} >Check Data</button>
         {/* {console.log(props.dataCal)} */}
-        {props.dataCal?props.dataCal.map((e,i)=>props.dataCal.length===1?<div>{e.quantity}</div>:<drawPieChart key={i}/>):'wait'}
+        {/*props.dataCal?props.dataCal.map((e,i)=>props.dataCal.length===1?<div>{e.quantity}</div>:<drawPieChart key={i}/>):'wait'*/}
         {/* // <PieChart
         //     data={[
         //         { title: 'One', value: 10, color: '#E38627' },
@@ -177,6 +177,7 @@ class DataPage extends React.Component {
         const id = url.substring(index + 5);
         $.get(`/api/survey/${id}`)
             .then((result) => {
+                console.log("hit the first cb")
                 this.setState({
                     surveyData: result.data.answer,
                     selection: result.data.selection,
@@ -184,8 +185,9 @@ class DataPage extends React.Component {
                     pageID: result.data._id,
                     pageTitle: result.data.title
                 }, function(){
+                    console.log("hit the second cb")
                    // this.attendingRate();
-                    //this.dataAnalysis();
+                    this.dataAnalysis();
                 });
 
             });

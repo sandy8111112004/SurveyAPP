@@ -39,19 +39,19 @@ const AppendBox=(props)=>(
         <p className='questionStyle'>"Please enter the title of your survey."</p>
         <input name="createTitle" value={props.titleValue} onChange={props.changeHandler}></input>
         </div>
-        <button onClick={props.addHandler}>Add</button>
+        <button name='titleBtn' onClick={props.addHandler}>Add</button>
     <div>
         <p className='questionStyle'>"Please enter your question here."</p>
         <input name="createQuestion" value={props.questionValue} onChange={props.changeHandler}></input>
     </div>
-    <button onClick={props.addHandler}>Add</button>
+    <button name='questionBtn' onClick={props.addHandler}>Add</button>
     <div>
         <p className='questionStyle'>"Please enter your question for multi-selection here."</p>
         <input name="createSelection" value={props.selectionValue} onChange={props.changeHandler}></input>
         <p className='questionStyle'>"Options: please seperate with ',' "</p>
         <input name="createOption" value={props.optionValue} onChange={props.changeHandler}></input>
     </div>
-    <button onClick={props.addHandler}>Add</button>
+    <button name='selectionBtn' onClick={props.addHandler}>Add</button>
     </div>
 )
 
@@ -78,25 +78,39 @@ class CreatePage extends Component{
         e.preventDefault();
         let previous = this.state.questionList;
 
+        if(e.target.name==='questionBtn'){
         if(this.state.createQuestion){
             previous.question.push({questionContent:`${this.state.createQuestion}`});
+            this.setState({
+                questionList: previous,
+                createQuestion:''
+            });
 
-        }
+        }}else if(e.target.name==='selectionBtn'){
         if(this.state.createSelection && this.state.createOption){
             let optionArr=this.state.createOption.split(",")
             optionArr = optionArr.map(e=>e.trim());
             optionArr.unshift("");
             previous.selection.push({question:`${this.state.createSelection}`, options:optionArr});
+            this.setState({
+                questionList: previous,
+                createSelection:'',
+                createOption:''
+            });
 
-        }
+        }} else if(e.target.name ==='titleBtn'){
         if(this.state.createTitle){
             previous.title=`${this.state.createTitle}`;
-        }        
-        this.setState({questionList:previous,
-            createSelection:'',
-            createQuestion:'',
-            createOption:'',
-            createTitle:'',});
+            this.setState({
+                questionList: previous,
+                createTitle:''
+            });
+        }}        
+        // this.setState({questionList:previous,
+        //     createSelection:'',
+        //     createQuestion:'',
+        //     createOption:'',
+        //     createTitle:'',});
 
     }
 
@@ -112,7 +126,11 @@ class CreatePage extends Component{
                         question:[],
                         title:''
                     }
-                });      
+                }
+                ,function(){
+                    window.location.reload();
+                }
+                );      
             }
         )
     }

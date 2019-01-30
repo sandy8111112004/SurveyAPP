@@ -30,12 +30,12 @@ class App extends Component {
     })
   }
 
-  componentDidUpdate(){
-    $.get(`/api/allSurveys`)
-    .then((result)=>{
-        this.setState({allSurveys: result.data});
-    })
-  }
+  // componentDidUpdate(){
+  //   $.get(`/api/allSurveys`)
+  //   .then((result)=>{
+  //       this.setState({allSurveys: result.data});
+  //   })
+  // }
 
   handleDelete=(id)=>{
     $.delete(`/api/survey/${id}`)
