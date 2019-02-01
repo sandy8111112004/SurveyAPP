@@ -26,7 +26,8 @@ class SurveyContents extends React.Component {
     state={
         selection:[],
         question:[],
-        answer:[]
+        answer:[],
+        title:''
     }
 
 
@@ -65,7 +66,9 @@ class SurveyContents extends React.Component {
             this.setState({
                 selection: result.data.selection,
                 question:result.data.question,
-                answer:answerForm})
+                answer:answerForm,
+                title:result.data.title
+            })
         })
     }
 
@@ -73,8 +76,7 @@ class SurveyContents extends React.Component {
     render(){
         return(
             <form>
-                Survey Content Start Here!
-                
+                <div className='survey-font-title'>{this.state.title} </div>
                 {this.state.question.map((e,i)=>
                 <Question 
                     question={e.questionContent} 
@@ -93,12 +95,10 @@ class SurveyContents extends React.Component {
                     id={e._id} 
                     key={i} 
                 /> )
-                
-                
                 }
-
-                
-                <button onClick={this.handleSubmit}>Submit</button>
+                <div className='center-box'>
+                <button id='submit-survey-btn' onClick={this.handleSubmit}>Submit</button>
+                </div>
             </form>
         )
     }

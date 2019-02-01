@@ -1,7 +1,14 @@
 body{
   height: 98vh;
-  background-color: white;
+
   font-family: 'Raleway', sans-serif;
+  /* background: rgb(93,231,247);
+  background: linear-gradient(0deg, rgba(93,231,247,1) 0%, rgba(255,255,255,1) 36%, rgba(93,231,240,1) 100%);
+   */
+  /*background-color: white;*/
+  background: rgb(255,255,255);
+background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(93,231,247,1) 100%);
+background-repeat: no-repeat;
 }
 
 
@@ -17,3 +24,14 @@ p{
   font-size: 14px;
 }
 
+
+.survey-font-title{
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+}
+
+.center-box{
+  display: grid;
+  justify-content: center;
+}

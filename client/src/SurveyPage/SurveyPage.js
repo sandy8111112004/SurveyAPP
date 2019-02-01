@@ -6,8 +6,7 @@ import './SurveyPage.css';
 
 const SurveyPage = (props)=>(
     <div id='survey-box'>
-      <div id='survey-inner-box'>
-          <Header />
+      <div id='survey-inner-box' className='center-box'>
           <SurveyContents />
       </div>
     </div>

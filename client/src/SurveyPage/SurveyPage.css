@@ -19,6 +19,7 @@ body{
 
 #survey-inner-box{
   padding: 20px;
+  font-size: 20px;
 }
 
 h1 {
@@ -31,4 +32,28 @@ h2{
 
 p{
   font-size: 14px;
+}
+
+#survey-inner-box input {
+  width: 100%;
+}
+
+#survey-inner-box p {
+  font-size: 16px;
+}
+
+#submit-survey-btn {
+  background-color: #808b96;
+  border: 1px solid #808b96;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px;
+  padding: 10px;
+  transition: background-color 0.5s;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#submit-survey-btn:hover{
+  background-color: #f3f4f4;
 }
