@@ -35,3 +35,36 @@ p{
   display: grid;
   justify-content: center;
 }
+
+.nav-style{
+  background-color: #004099;
+
+}
+
+.nav-style a{
+  color: #b2b2b2;
+  font-style: normal;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-left: 20px;
+  transition: 1s;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.nav-style a:hover{
+  background: rgb(0,64,153);
+  background: linear-gradient(90deg, rgba(0,64,153,1) 0%, rgba(0,98,233,1) 50%, rgba(0,64,153,1) 100%);
+
+}
+
+.page-font-title{
+  font-size: 30px;
+  font-weight: bold;
+  padding:20px;
+font-family: 'Lobster', cursive;
+}
+
+.page-title-box{
+  background-color: white;
+}
