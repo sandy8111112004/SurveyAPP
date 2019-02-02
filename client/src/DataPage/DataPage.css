@@ -1,0 +1,104 @@
+#raw-data-display{
+    padding: 20px;
+}
+
+.dataEntry {
+    line-height: 2;
+    background-color: #d5f3f3;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 2.5vw;
+    padding-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 34vw;
+    font-size: 16px;
+}
+
+.question-style {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+
+}
+
+.answer-style {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#dataEntry-box{
+    background-color: #f3f4f4;
+
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow:0px 2px 5px 5px #666666;
+    width: 40vw;
+    height: 450px;
+    overflow: auto;
+}
+
+#detailed-box{
+    background-color: #f3f4f4;
+
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow:0px 2px 5px 5px #666666;
+    width: 40vw;
+    height: 450px;
+}
+
+.chart-box{
+    margin: 0;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 60% 40%;
+}
+
+.color-box{
+    width: 14px;
+    height: 13px;
+    display: inline-block;
+    
+}
+
+/* #pie-box{
+    display: inline-block;
+    background-color: #666666;
+    height: 40vh;
+} */
+
+.box{
+    display: grid;
+    grid-column: span 1;
+    grid-row: span 1;
+}
+.legend-box{
+    height:20px;
+}
+div{
+    margin: 0;
+}
+
+#deleteListBtn{
+    float:right;
+    margin:4px;
+    background-color: #d5f3f3;
+    height: 24px;
+    transition: background-color 1s;
+    border: #d5f3f3 2px;
+    border-radius: 3px;
+}
+
+#deleteListBtn:hover{
+    background-color: #3da595;
+    cursor: pointer;
+}
+
+#main-content{
+    margin: 10px;
+}
+
+.font-20 {
+    font-size: 20px;
+}

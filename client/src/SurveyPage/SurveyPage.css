@@ -1,0 +1,59 @@
+body{
+  height: 98vh;
+  background-color: white;
+  font-family: 'Raleway', sans-serif;
+}
+
+#survey-box{
+  font-family: 'Raleway', sans-serif;
+  align-content: center;
+  width: 60vw;
+  margin-left: 20vw; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 2;
+  background-color: #f3f4f4;
+  border-radius: 10px;
+  box-shadow:0px 2px 5px 5px #666666;
+}
+
+#survey-inner-box{
+  padding: 20px;
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2{
+  font-size: 30px;
+}
+
+p{
+  font-size: 14px;
+}
+
+#survey-inner-box input {
+  width: 100%;
+}
+
+#survey-inner-box p {
+  font-size: 16px;
+}
+
+#submit-survey-btn {
+  background-color: #808b96;
+  border: 1px solid #808b96;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px;
+  padding: 10px;
+  transition: background-color 0.5s;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#submit-survey-btn:hover{
+  background-color: #f3f4f4;
+}
