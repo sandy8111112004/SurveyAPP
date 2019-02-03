@@ -1,9 +1,3 @@
-body{
-  height: 98vh;
-  background-color: white;
-  font-family: 'Raleway', sans-serif;
-}
-
 #survey-box{
   font-family: 'Raleway', sans-serif;
   align-content: center;
@@ -20,18 +14,6 @@ body{
 #survey-inner-box{
   padding: 20px;
   font-size: 20px;
-}
-
-h1 {
-  font-size: 40px;
-}
-
-h2{
-  font-size: 30px;
-}
-
-p{
-  font-size: 14px;
 }
 
 #survey-inner-box input {

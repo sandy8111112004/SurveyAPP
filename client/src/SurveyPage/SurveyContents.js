@@ -31,7 +31,6 @@ class SurveyContents extends React.Component {
     }
 
 
-
     handleSubmit=(e)=>{
         e.preventDefault();
         const url=window.location.href;
