@@ -3,6 +3,7 @@ import * as $ from 'axios';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Grid from 'react-css-grid';
 import './CreatePage.css';
+import {Home, Footer} from '../Home/Home.js'
 
 const SelectOption = (props) => (
     <option>{props.optionContent}</option>
@@ -40,13 +41,13 @@ const AppendBox = (props) => (
             <input name="createTitle" value={props.titleValue} onChange={props.changeHandler}></input>
         </div>
         <button name='titleBtn' onClick={props.addHandler} className="fas fa-plus"></button>
-        <hr/>
+        <hr />
         <div>
             <p className='questionStyle'>"Please enter your question here."</p>
             <input name="createQuestion" value={props.questionValue} onChange={props.changeHandler}></input>
         </div>
         <button name='questionBtn' onClick={props.addHandler} className="fas fa-plus"></button>
-        <hr/>
+        <hr />
         <div>
             <p className='questionStyle'>"Please enter your question for multi-selection here."</p>
             <input name="createSelection" value={props.selectionValue} onChange={props.changeHandler}></input>
@@ -54,7 +55,7 @@ const AppendBox = (props) => (
             <input name="createOption" value={props.optionValue} onChange={props.changeHandler}></input>
         </div>
         <button name='selectionBtn' onClick={props.addHandler} className="fas fa-plus"></button>
-        
+
     </div>
 )
 
@@ -139,45 +140,54 @@ class CreatePage extends Component {
     render() {
         return (
             <div>
-                <nav>
-                    <Link to={'/'}>Home</Link>
+                <div className='nav-style'>
+                    <nav>
+                        <Link to={'/'} style={{ textDecoration: 'none' }}>Home</Link>
+                    </nav>
+                </div>
+                <div className='page-title-box'>
+                    <div className='page-font-title'>
+                        EasySurvey
+                    </div>
+                </div>
 
-                </nav>
+
                 <div className='center-box'>
-                <div id="append-box">
-                    <div className='center-box'>
-                        <div>
-                            <div className='survey-font-title'>Enter Your Questions Here!</div>
-                            <AppendBox
-                                addHandler={this.handleAdd}
-                                titleValue={this.state.createTitle}
-                                questionValue={this.state.createQuestion}
-                                selectionValue={this.state.createSelection}
-                                optionValue={this.state.createOption}
-                                changeHandler={this.handleChange}
-                            />
+                    <div id="append-box">
+                        <div className='center-box'>
+                            <div>
+                                <div className='survey-font-title'>Enter Your Questions Here!</div>
+                                <AppendBox
+                                    addHandler={this.handleAdd}
+                                    titleValue={this.state.createTitle}
+                                    questionValue={this.state.createQuestion}
+                                    selectionValue={this.state.createSelection}
+                                    optionValue={this.state.createOption}
+                                    changeHandler={this.handleChange}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
                 <div className='center-box'>
-                <div id="create-survey-box">
-                    <div className='center-box'>
-                    <div>
-                        <CreateSurveyContents
-                            title={this.state.questionList.title}
-                            question={this.state.questionList.question}
-                            selection={this.state.questionList.selection}
-                        />
+                    <div id="create-survey-box">
+                        <div className='center-box'>
+                            <div>
+                                <CreateSurveyContents
+                                    title={this.state.questionList.title}
+                                    question={this.state.questionList.question}
+                                    selection={this.state.questionList.selection}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div className='center-box'>
+                    <button id='create-survey-btn' onClick={this.handleSubmit}>Create A Survey!</button>
                 </div>
-            </div>
-            <div className='center-box'>
-                <button id='create-survey-btn' onClick={this.handleSubmit}>Create A Survey!</button>
-            </div>
-                </div >
-                )
+                <Footer />
+            </div >
+        )
     }
 
 }

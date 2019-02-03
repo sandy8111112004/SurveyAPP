@@ -1,14 +1,10 @@
 body{
   height: 98vh;
-
   font-family: 'Raleway', sans-serif;
-  /* background: rgb(93,231,247);
-  background: linear-gradient(0deg, rgba(93,231,247,1) 0%, rgba(255,255,255,1) 36%, rgba(93,231,240,1) 100%);
-   */
-  /*background-color: white;*/
-  background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(93,231,247,1) 100%);
-background-repeat: no-repeat;
+  background-color:#f3f4f4;
+  /* background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(93,231,247,1) 100%);
+  background-repeat: no-repeat; */
 }
 
 
@@ -30,8 +26,53 @@ p{
   font-size: 30px;
   text-align: center;
 }
+.survey-font-title-left{
+  font-weight: bold;
+  font-size: 30px;
+  text-align: inline;
+  margin: 40px;
+  font-family: 'Bree Serif', serif;
+}
 
 .center-box{
   display: grid;
   justify-content: center;
+}
+
+.nav-style{
+  /*background-color: #004099;*/
+  background-color: #90a2b2;
+  text-align: right;
+}
+
+.nav-style a{
+  color: #f3f4f4;
+  font-style: normal;
+  line-height: 1.5;
+  font-size: 18px;
+  margin-right: 40px;
+  transition: 1s;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* .nav-style a:hover{
+   background: rgb(0,64,153);
+  background: linear-gradient(90deg, rgba(0,64,153,1) 0%, rgba(0,98,233,1) 50%, rgba(0,64,153,1) 100%); 
+
+} */
+
+.page-font-title{
+  font-size: 36px;
+  font-weight: bold;
+  padding: 10px;
+  padding-bottom: 20px;
+  padding-left:40px;
+  font-family: 'Lobster', cursive;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.page-title-box{
+  background-color: #90a2b2;
 }

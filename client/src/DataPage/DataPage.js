@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//import Chart from './Chart.js';
 import './DataPage.css'
 import Grid from 'react-css-grid';
 import PieChart from 'react-minimal-pie-chart';
 import * as $ from 'axios';
+import {Home, Footer} from '../Home/Home.js'
 
 const Legend = (props) => (
     <div>
@@ -112,11 +112,18 @@ const DataList = (props) => (
 
 const PageContens = (props) => (
     <div>
+        <div className='nav-style'>
         <nav>
-            <Link to={'/'}>Home</Link>  |
-            <Link to={`/survey/${props.pageID}`}>{props.pageTitle} Form</Link>
+            <Link to={'/'} style={{textDecoration:'none'}}>Home</Link>  
+            <Link to={`/survey/${props.pageID}`} style={{textDecoration:'none'}} >{props.pageTitle} Form</Link>
         </nav>
-        On the DataPage
+        </div>
+        
+
+        <div className='survey-font-title-left'>
+            {props.pageTitle}
+        </div>
+
 
         <div id='main-content'>
 
@@ -238,6 +245,7 @@ class DataPage extends React.Component {
                 </div>
                 <div id='raw-data-display'>
                     <Grid width='40vw' gap={10}>
+                    <div className='center-box'>
                         <div id='dataEntry-box'>
                             <ul>
                                 {this.state.surveyData ? this.state.surveyData.map((e, i) =>
@@ -250,6 +258,8 @@ class DataPage extends React.Component {
                                     />) : 'Loading...'}
                             </ul>
                         </div>
+                        </div>
+                        <div className='center-box'>
                         <div id='detailed-box'>
                             <DetailedSurvey
                                 question={this.state.question}
@@ -257,8 +267,10 @@ class DataPage extends React.Component {
                                 answer={this.state.surveyData[this.state.displayIndex]}
                             />
                         </div>
+                        </div>
                     </Grid>
                 </div>
+                <Footer />
             </div>
         )
     }
