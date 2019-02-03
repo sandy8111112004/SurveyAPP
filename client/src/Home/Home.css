@@ -41,6 +41,42 @@
     font-weight: normal;
 }
 
+.bottom-style{
+    display: grid;
+    grid-template-rows: 1fr 1fr 20px;
+    grid-template-columns: 30% 20% 20% 30%;
+    height: 200px;
+    padding: 40px;
+    background-color: #90a2b2;
+    margin-top: 40px;
+    color: white;
+    grid-gap: 10px;
+    
+}
 
+#box1, #box2, #box3{
+    display: grid;
+    grid-row: span 2;
+    grid-column: span 1;
+}
+#box4, #box5{
+    display: grid;
+    grid-row: span 1;
+    grid-column: span 1;
+}
+#box6{
+    display: grid;
+    grid-row: span 1;
+    grid-column: span 4;
+}
 
+.bottom-title{
+    font-size: 18px;
+    line-height: 2;
+    font-weight: bold;
+}
 
+.bottom-contents{
+    font-size: 16px;
+    line-height: 1.5;
+}

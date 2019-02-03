@@ -118,11 +118,11 @@ const PageContens = (props) => (
         </nav>
         </div>
         
-        <div className='page-title-box'>
-        <div className='page-font-title'>
+
+        <div className='survey-font-title-left'>
             {props.pageTitle}
         </div>
-        </div>
+
 
         <div id='main-content'>
 
