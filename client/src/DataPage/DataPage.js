@@ -152,7 +152,6 @@ class DataPage extends React.Component {
 
 
     dataAnalysis = () => {
-        //e.preventDefault();
         const lenSel = this.state.selection.length;
         const lenQue = this.state.question.length;
         const drawingData = this.state.surveyData;
@@ -164,7 +163,6 @@ class DataPage extends React.Component {
                 if (!isNaN(drawingData[j][lenQue + i][0].answer)) {
                     numArr[i][0] += parseFloat(drawingData[j][lenQue + i][0].answer);
                 } else {
-                    // console.log(drawingData[j][lenQue+i][0].answer);
                     if (numArr[i].find(e => e.title === drawingData[j][lenQue + i][0].answer)) {
                         let index = numArr[i].findIndex(e => e.title === drawingData[j][lenQue + i][0].answer);
                         numArr[i][index].value += 1;
@@ -175,7 +173,7 @@ class DataPage extends React.Component {
             }
 
         }
-        //console.log(numArr);
+
         this.setState({ dataCal: numArr });
     }
 

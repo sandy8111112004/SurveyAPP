@@ -62,12 +62,6 @@
     
 }
 
-/* #pie-box{
-    display: inline-block;
-    background-color: #666666;
-    height: 40vh;
-} */
-
 .box{
     display: grid;
     grid-column: span 1;

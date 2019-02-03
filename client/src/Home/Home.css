@@ -1,7 +1,6 @@
 .survey-entry-box {
     width: 200px;
     height: 200px;
-    /* background-color: #004099; */
     background-color: #666666;
     margin: 20px;
     text-align: center;
@@ -19,24 +18,18 @@
 }
 
 #link-style{
-    /* color: #001a3e; */
     color: black;
     font-style:normal;
 }
 
 .survey-entry-box:hover {
-    /* background-color: #0059d5; */
     background-color: #f3f4f4;
 }
 
 .survey-entry-box button {
     cursor: pointer;
-    /* background: #004099;
-    border: #004099 1px; */
     background: #666666;
     border: #666666 solid 3px;
-    /* border-bottom-left-radius: 1px;
-    border-bottom-right-radius: 10px; */
     font-size: 18px;
     font-family: 'Bree Serif', serif;
     font-weight: normal;
@@ -81,7 +74,3 @@
     font-size: 16px;
     line-height: 1.5;
 }
-
-/* #center-content-style{
-    background-color: #f3f4f4;
-} */

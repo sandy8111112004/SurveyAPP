@@ -11,10 +11,7 @@
     font-size: 20px;
 }
 
-/* .center-box{
-  display: grid;
-  justify-content: center;
-} */
+
 #append-box button {
   float: right;
   font-size: 20px;
@@ -51,8 +48,3 @@
   font-weight: bold;
 }
 
-/* .survey-font-title{
-  font-weight: bold;
-  font-size: 30px;
-  text-align: center;
-} */

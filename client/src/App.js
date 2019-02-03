@@ -5,69 +5,60 @@ import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import SurveyPage from './SurveyPage/SurveyPage.js';
 import DataPage from './DataPage/DataPage.js';
-import {Home,Footer} from './Home/Home.js'
+import { Home, Footer } from './Home/Home.js'
 import CreatePage from './CreatePage/CreatePage.js'
 
 
 
-
 class App extends Component {
-  state={
-    allSurveys:[]
+  state = {
+    allSurveys: []
   }
 
-  getAllSurveys = ()=>{
+  getAllSurveys = () => {
     $.get(`/api/allSurveys`)
-    .then((result)=>{
-        this.setState({allSurveys: result});
-    })
-  }
-
-  componentDidMount(){
-    $.get(`/api/allSurveys`)
-    .then((result)=>{
-        this.setState({allSurveys: result.data});
-    })
-  }
-
-  // componentDidUpdate(){
-  //   $.get(`/api/allSurveys`)
-  //   .then((result)=>{
-  //       this.setState({allSurveys: result.data});
-  //   })
-  // }
-
-  handleDelete=(id)=>{
-    $.delete(`/api/survey/${id}`)
-    .then((result)=>{
-      $.get(`/api/allSurveys`)
-      .then((result)=>{
-          this.setState({allSurveys: result.data});
+      .then((result) => {
+        this.setState({ allSurveys: result });
       })
-    });
+  }
+
+  componentDidMount() {
+    $.get(`/api/allSurveys`)
+      .then((result) => {
+        this.setState({ allSurveys: result.data });
+      })
+  }
+
+  handleDelete = (id) => {
+    $.delete(`/api/survey/${id}`)
+      .then((result) => {
+        $.get(`/api/allSurveys`)
+          .then((result) => {
+            this.setState({ allSurveys: result.data });
+          })
+      });
   }
 
 
 
   render() {
     return (
-      
+
       <BrowserRouter>
-      <div>
-        { this.state.allSurveys.map( (e,i)=>
-          <Route exact path={`/survey/${e._id}`} component={SurveyPage} key ={i}/>)
-        }
-         {/* {this.state.allSurveys[0]? <Route exact path={`/api/survey/${this.state.allSurveys[0]._id}`} component={SurveyPage}/>:'waiting'}
-          {this.state.allSurveys[1]?<Route exact path={`/api/survey/${this.state.allSurveys[1]._id}`} component={SurveyPage}/>:'waiting'} */}
-         <Route exact path='/' 
-            render = {()=><Home surveyList={this.state.allSurveys} handleDelete={this.handleDelete}/>} 
+        <div>
+          {this.state.allSurveys.map((e, i) =>
+            <Route exact path={`/survey/${e._id}`} component={SurveyPage} key={i} />)
+          }
+
+          <Route exact path='/'
+            render={() => <Home surveyList={this.state.allSurveys} handleDelete={this.handleDelete} />}
           />
-         {/* <Route exact path='/survey/edit/5c43f9d2f15727502cad2240' component={DataPage}/> */}
-         { this.state.allSurveys.map( (e,i)=>
-          <Route exact path={`/survey/edit/${e._id}`} component={DataPage} key={i}/>)
+
+          {this.state.allSurveys.map((e, i) =>
+            <Route exact path={`/survey/edit/${e._id}`} component={DataPage} key={i} />)
           }
           <Route exact path={'/survey/create'} component={CreatePage} />
-      </div>
+        </div>
       </BrowserRouter>
 
     );
