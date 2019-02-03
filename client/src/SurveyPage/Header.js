@@ -3,7 +3,11 @@ import React from 'react';
 
 const Header = (props) => (
     <div>
-        Header: Let's Start a Survey!
+        <div className='page-title-box'>
+            <div className='page-font-title'>
+                EasySurvey
+            </div>
+        </div>
     </div>
 )
 

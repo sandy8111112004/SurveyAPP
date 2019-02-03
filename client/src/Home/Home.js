@@ -24,27 +24,8 @@ const SurveyEntryBox = (props) => (
     </div>
 )
 
-
-
-const Home = (props) => (
-    <div>
-        <div className='nav-style'>
-            <nav>
-                <Link to={'/'} style={{ textDecoration: 'none' }}>Home    </Link>
-                <Link to={'/survey/create'} style={{ textDecoration: 'none' }}>    New Survey     </Link>
-            </nav>
-        </div>
-        <div className='page-title-box'>
-            <div className='page-font-title'>
-                EasySurvey
-            </div>
-        </div>
-        
-
-        <Grid align='center'>
-            {props.surveyList ? props.surveyList.map((e, i) => <SurveyEntryBox deleteHandler={props.handleDelete} id={e._id} title={e.title} key={i} />) : 'Loading'}
-        </Grid>
-        <div className='bottom-style'>
+const Footer=(props)=>(
+    <div className='bottom-style'>
             <div id='box1'>
                 
                     <div>
@@ -93,15 +74,39 @@ const Home = (props) => (
             <div id='box6'>
             <div className='center-box'>
             <div>
-            <footer><i class="far fa-copyright"></i> 2019 Copyright: Ming-Shiuan Tsai</footer>
+            <footer><i className="far fa-copyright"></i> 2019 Copyright: Ming-Shiuan Tsai</footer>
             </div>
             </div>
             </div>
         </div>
+)
+
+
+
+const Home = (props) => (
+    <div>
+        <div className='nav-style'>
+            <nav>
+                <Link to={'/'} style={{ textDecoration: 'none' }}>Home    </Link>
+                <Link to={'/survey/create'} style={{ textDecoration: 'none' }}>    New Survey     </Link>
+            </nav>
+        </div>
+        <div className='page-title-box'>
+            <div className='page-font-title'>
+                EasySurvey
+            </div>
+        </div>
+        
+        
+        <Grid align='center'>
+            {props.surveyList ? props.surveyList.map((e, i) => <SurveyEntryBox deleteHandler={props.handleDelete} id={e._id} title={e.title} key={i} />) : 'Loading'}
+        </Grid>
+        <Footer />
+        
     </div>
 )
 
-export default Home;
+export  {Home, Footer};
 
 
 

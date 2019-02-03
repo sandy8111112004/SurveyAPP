@@ -4,6 +4,7 @@ import './DataPage.css'
 import Grid from 'react-css-grid';
 import PieChart from 'react-minimal-pie-chart';
 import * as $ from 'axios';
+import {Home, Footer} from '../Home/Home.js'
 
 const Legend = (props) => (
     <div>
@@ -269,6 +270,7 @@ class DataPage extends React.Component {
                         </div>
                     </Grid>
                 </div>
+                <Footer />
             </div>
         )
     }

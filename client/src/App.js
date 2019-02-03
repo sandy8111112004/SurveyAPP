@@ -5,7 +5,7 @@ import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import SurveyPage from './SurveyPage/SurveyPage.js';
 import DataPage from './DataPage/DataPage.js';
-import Home from './Home/Home.js'
+import {Home,Footer} from './Home/Home.js'
 import CreatePage from './CreatePage/CreatePage.js'
 
 

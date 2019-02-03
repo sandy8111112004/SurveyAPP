@@ -3,6 +3,7 @@ import * as $ from 'axios';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Grid from 'react-css-grid';
 import './CreatePage.css';
+import {Home, Footer} from '../Home/Home.js'
 
 const SelectOption = (props) => (
     <option>{props.optionContent}</option>
@@ -184,6 +185,7 @@ class CreatePage extends Component {
                 <div className='center-box'>
                     <button id='create-survey-btn' onClick={this.handleSubmit}>Create A Survey!</button>
                 </div>
+                <Footer />
             </div >
         )
     }
