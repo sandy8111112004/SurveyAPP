@@ -105,7 +105,7 @@ const SelectionEntry = (props) => (
 const DataList = (props) => (
     <div>
         <li className='dataEntry' onClick={() => props.handleDisplay(props.index)}> {props.entry[0][0].answer}
-            <span>  <button id='deleteListBtn' onClick={() => props.answerDeleteHandler(props.index)} class="fas fa-trash-alt"></button></span></li>
+            <span>  <button id='deleteListBtn' onClick={() => props.answerDeleteHandler(props.index)} className="fas fa-trash-alt"></button></span></li>
 
     </div>
 )
@@ -146,7 +146,7 @@ class DataPage extends React.Component {
         pageID: '',
         pageTitle: '',
         dataCal: [],
-        colorArr: ['#E38627', '#C13C37', '#6A2135', '#35A5A5', '#FB0A27', '#0AFB14', '#210AFB', '#29FB0A']
+        colorArr: ['#744caa','#E38627', '#C13C37', '#6A2135', '#35A5A5', '#FB0A27', '#0AFB14', '#210AFB', '#29FB0A']
     }
 
 
