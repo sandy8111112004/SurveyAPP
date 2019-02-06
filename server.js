@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "production") {
 require('./routes/api-routes')(app);
 
 // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactSurveys");
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactSurveys");
 mongoose.connect(process.env.MONGODB_URI || "mongodb://mingDatabase:ming123456@ds237979.mlab.com:37979/heroku_svp183d9");
 
 

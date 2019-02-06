@@ -33,7 +33,8 @@ const Footer = (props) => (
                 <div className='bottom-contents'>
                     This is a project for Georgia Tech Coding Boot Camp coursework.
                     The website is a react application with the utilization of Mongo DB.
-                        </div>
+                    Check the project repository in GitHub for details.
+                </div>
             </div>
 
         </div>
@@ -62,13 +63,13 @@ const Footer = (props) => (
         <div id='box4'>
             <div>
                 <div className='bottom-title'>Github</div>
-                <a target='_blank' href='https://github.com/sandy8111112004/SurveyAPP'>https://github.com/sandy8111112004/SurveyAPP</a>
+                <a target='_blank' href='https://github.com/sandy8111112004/SurveyAPP'>Repository Link</a>
             </div>
         </div>
         <div id='box5'>
             <div>
                 <div className='bottom-title'>Heroku</div>
-                <a href='https://gtbc-survey-app.herokuapp.com'>https://gtbc-survey-app.herokuapp.com</a>
+                <a href='https://gtbc-survey-app.herokuapp.com'>Deploy Link</a>
             </div>
         </div>
         <div id='box6'>
@@ -81,6 +82,20 @@ const Footer = (props) => (
     </div>
 )
 
+const EmptyTitle = (props) =>(
+    <div className='center-box'>
+    <div id='home-empty-title'>
+        Welcome to EasySurvey!
+        
+    </div>
+    <div className='center-box'>
+    <div>
+        Create a new survey <Link to={'/survey/create'} >here</Link> !
+    </div>
+    </div>
+    </div>
+    
+)
 
 
 const Home = (props) => (
@@ -96,11 +111,14 @@ const Home = (props) => (
                 EasySurvey
             </div>
         </div>
-
-
+        {/* <EmptyTitle /> */}
+        <div id='home-content-box'>
+        {props.surveyList.length===0?<EmptyTitle />:
         <Grid align='center'>
             {props.surveyList ? props.surveyList.map((e, i) => <SurveyEntryBox deleteHandler={props.handleDelete} id={e._id} title={e.title} key={i} />) : 'Loading'}
         </Grid>
+        }
+        </div>
         <Footer />
 
     </div>

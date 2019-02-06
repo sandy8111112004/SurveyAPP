@@ -6,8 +6,8 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import SurveyPage from './SurveyPage/SurveyPage.js';
 import DataPage from './DataPage/DataPage.js';
 import { Home, Footer } from './Home/Home.js'
-import CreatePage from './CreatePage/CreatePage.js'
-
+import CreatePage from './CreatePage/CreatePage.js';
+import CompletePage from './SurveyPage/CompletePage.js';
 
 
 class App extends Component {
@@ -58,6 +58,7 @@ class App extends Component {
             <Route exact path={`/survey/edit/${e._id}`} component={DataPage} key={i} />)
           }
           <Route exact path={'/survey/create'} component={CreatePage} />
+          <Route exact path={'/completed'} component={CompletePage} />
         </div>
       </BrowserRouter>
 

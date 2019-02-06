@@ -74,3 +74,16 @@
     font-size: 16px;
     line-height: 1.5;
 }
+
+#home-empty-title{
+    font-family: 'Bree Serif', serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 40px;
+}
+
+#home-content-box{
+    margin:40px;
+    margin-top:80px;
+    margin-bottom: 80px;
+}

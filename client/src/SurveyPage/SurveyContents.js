@@ -1,5 +1,6 @@
 import React from 'react';
 import * as $ from 'axios';
+import {Redirect} from 'react-router-dom';
 
 const SelectOption=(props)=>(
     <option value={props.optionContent}>{props.optionContent}</option>
@@ -27,7 +28,8 @@ class SurveyContents extends React.Component {
         selection:[],
         question:[],
         answer:[],
-        title:''
+        title:'',
+        redirect:false
     }
 
 
@@ -37,10 +39,8 @@ class SurveyContents extends React.Component {
         const index = url.indexOf('survey/')
         const id = url.substring(index+7); 
         $.put(`/api/survey/answer/${id}`,{answer:this.state.answer}).then(
-            function(data){
-                alert('Thank you for submit the Survey!');
-                
-            
+            (data)=>{
+                this.setState({redirect:true});
             }
         )
     }
@@ -66,7 +66,8 @@ class SurveyContents extends React.Component {
                 selection: result.data.selection,
                 question:result.data.question,
                 answer:answerForm,
-                title:result.data.title
+                title:result.data.title,
+                redirect:false
             })
         })
     }
@@ -74,6 +75,8 @@ class SurveyContents extends React.Component {
 
     render(){
         return(
+            <div>
+                {!this.state.redirect?
             <form>
                 <div className='survey-font-title'>{this.state.title} </div>
                 {this.state.question.map((e,i)=>
@@ -99,6 +102,9 @@ class SurveyContents extends React.Component {
                 <button id='submit-survey-btn' onClick={this.handleSubmit}>Submit</button>
                 </div>
             </form>
+
+            :<Redirect to='/completed' />}
+            </div>
         )
     }
 }
