@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3001;
 //all the server side runs on port 3001
 //all the client side runs on port 3000
 //in client side package.json --> will have a proxy telling the server to run the server to 3001 so that our url request can find a correct way
-
+require('dotenv').config();
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -25,7 +25,7 @@ require('./routes/api-routes')(app);
 
 // Connect to the Mongo DB
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactSurveys");
-mongoose.connect(process.env.MONGODB_URI || "mongodb://mingDatabase:ming123456@ds237979.mlab.com:37979/heroku_svp183d9");
+mongoose.connect(process.env.MONGODB_URI || `${process.env.mongodb}`);
 
 
 // Start the API server

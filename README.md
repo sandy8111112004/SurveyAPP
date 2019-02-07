@@ -1,1 +1,2 @@
-# SurveyAPP
+# EasySurvey
+EasySurvey is a project for coding boot camp and is a web app that allow people to create a new survey and send those survey to your friends. You'll be able to see all the collected data and some analysis for each survey you created.
