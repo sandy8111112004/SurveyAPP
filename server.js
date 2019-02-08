@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const router = express.Router();
 const PORT = process.env.PORT || 3001;
 //all the server side runs on port 3001
 //all the client side runs on port 3000
