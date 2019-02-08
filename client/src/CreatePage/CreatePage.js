@@ -5,6 +5,13 @@ import Grid from 'react-css-grid';
 import './CreatePage.css';
 import {Home, Footer} from '../Home/Home.js'
 
+/**
+ * Main Component: CreatePage
+ * CreateSurveyContents: render entered questions
+ * AppendBox: The main input box for title and questions
+ */
+
+
 const SelectOption = (props) => (
     <option>{props.optionContent}</option>
 )
@@ -24,7 +31,6 @@ const Question = (props) => (
         <input></input>
     </div>
 )
-
 
 const CreateSurveyContents = (props) => (
     <div>
@@ -93,8 +99,10 @@ class CreatePage extends Component {
             }
         } else if (e.target.name === 'selectionBtn') {
             if (this.state.createSelection && this.state.createOption) {
+                //the options are seperated by ','
                 let optionArr = this.state.createOption.split(",")
                 optionArr = optionArr.map(e => e.trim());
+                //insert an empty string to the beginning of the array
                 optionArr.unshift("");
                 previous.selection.push({ question: `${this.state.createSelection}`, options: optionArr });
                 this.setState({
@@ -151,7 +159,6 @@ class CreatePage extends Component {
                     </div>
                 </div>
 
-
                 <div className='center-box'>
                     <div id="append-box">
                         <div className='center-box'>
@@ -191,8 +198,6 @@ class CreatePage extends Component {
     }
 
 }
-
-
 
 
 export default CreatePage;

@@ -5,6 +5,11 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Grid from 'react-css-grid';
 
 
+/**
+ * Home: homepage component
+ * Footer: footer component
+ */
+
 const LinkContent = (props) => (
     <span>
         <Link id='link-style' to={`/survey/edit/${props.id}`} style={{ textDecoration: 'none' }} >  {props.title} </Link>
@@ -111,7 +116,6 @@ const Home = (props) => (
                 EasySurvey
             </div>
         </div>
-        {/* <EmptyTitle /> */}
         <div id='home-content-box'>
         {props.surveyList.length===0?<EmptyTitle />:
         <Grid align='center'>

@@ -9,6 +9,10 @@ import { Home, Footer } from './Home/Home.js'
 import CreatePage from './CreatePage/CreatePage.js';
 import CompletePage from './SurveyPage/CompletePage.js';
 
+/**
+ * This stateful component get data from database
+ * and define all the URL path for Route
+ */
 
 class App extends Component {
   state = {
@@ -38,7 +42,6 @@ class App extends Component {
           })
       });
   }
-
 
 
   render() {
