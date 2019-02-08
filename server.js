@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGODB_URI || `${process.env.mongodb}`);
 //   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // });
 
-router.use(
+app.use(
   function(req, res) {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
   }
