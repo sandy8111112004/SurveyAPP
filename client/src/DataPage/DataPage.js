@@ -4,7 +4,14 @@ import './DataPage.css'
 import Grid from 'react-css-grid';
 import PieChart from 'react-minimal-pie-chart';
 import * as $ from 'axios';
-import {Home, Footer} from '../Home/Home.js'
+import { Home, Footer } from '../Home/Home.js'
+
+/**
+ * Main Component: DataPage
+ * DetailedSurvey: render individual detailed survey data
+ * PageContents: render analysis of the data and pie chart
+ */
+
 
 const Legend = (props) => (
     <div>
@@ -113,23 +120,18 @@ const DataList = (props) => (
 const PageContens = (props) => (
     <div>
         <div className='nav-style'>
-        <nav>
-            <Link to={'/'} style={{textDecoration:'none'}}>Home</Link>  
-            <Link to={`/survey/${props.pageID}`} style={{textDecoration:'none'}} >{props.pageTitle} Form</Link>
-        </nav>
+            <nav>
+                <Link to={'/'} style={{ textDecoration: 'none' }}>Home</Link>
+                <Link to={`/survey/${props.pageID}`} style={{ textDecoration: 'none' }} >{props.pageTitle} Form</Link>
+            </nav>
         </div>
-        
 
         <div className='survey-font-title-left'>
             {props.pageTitle}
         </div>
 
-
         <div id='main-content'>
-
             <ResultBox dataCal={props.dataCal} selection={props.selection} total={props.total} />
-
-
         </div>
     </div>
 )
@@ -146,19 +148,25 @@ class DataPage extends React.Component {
         pageID: '',
         pageTitle: '',
         dataCal: [],
-        colorArr: ['#744caa','#E38627', '#C13C37', '#6A2135', '#35A5A5', '#FB0A27', '#0AFB14', '#210AFB', '#29FB0A']
+        colorArr: ['#744caa', '#E38627', '#C13C37', '#6A2135', '#35A5A5', '#FB0A27', '#0AFB14', '#210AFB', '#29FB0A']
     }
 
 
-
+    /**
+    * Sum the number kind answer for selection question
+    * calculate the number of individual options for selection question
+    * Result: numArr: array type
+    */
     dataAnalysis = () => {
         const lenSel = this.state.selection.length;
         const lenQue = this.state.question.length;
         const drawingData = this.state.surveyData;
         let numArr = [];
 
+        //go through each the selection questions' answer
         for (let i = 0; i < lenSel; i++) {
             numArr[i] = [0];
+            //go through each surveys to collect data
             for (let j = 0; j < drawingData.length; j++) {
                 if (!isNaN(drawingData[j][lenQue + i][0].answer)) {
                     numArr[i][0] += parseFloat(drawingData[j][lenQue + i][0].answer);
@@ -178,7 +186,6 @@ class DataPage extends React.Component {
     }
 
     displayHandler = (id) => {
-        //e.preventDefault();
         this.setState({ displayIndex: id });
     }
 
@@ -217,7 +224,6 @@ class DataPage extends React.Component {
                         pageID: result.data._id,
                         pageTitle: result.data.title
                     }, function () {
-                        // this.attendingRate();
                         this.dataAnalysis();
                     });
                 }
@@ -243,28 +249,28 @@ class DataPage extends React.Component {
                 </div>
                 <div id='raw-data-display'>
                     <Grid width='40vw' gap={10}>
-                    <div className='center-box'>
-                        <div id='dataEntry-box'>
-                            <ul>
-                                {this.state.surveyData ? this.state.surveyData.map((e, i) =>
-                                    <DataList
-                                        entry={e}
-                                        key={i}
-                                        index={i}
-                                        handleDisplay={this.displayHandler}
-                                        answerDeleteHandler={this.handleAnswerDelete}
-                                    />) : 'Loading...'}
-                            </ul>
-                        </div>
+                        <div className='center-box'>
+                            <div id='dataEntry-box'>
+                                <ul>
+                                    {this.state.surveyData ? this.state.surveyData.map((e, i) =>
+                                        <DataList
+                                            entry={e}
+                                            key={i}
+                                            index={i}
+                                            handleDisplay={this.displayHandler}
+                                            answerDeleteHandler={this.handleAnswerDelete}
+                                        />) : 'Loading...'}
+                                </ul>
+                            </div>
                         </div>
                         <div className='center-box'>
-                        <div id='detailed-box'>
-                            <DetailedSurvey
-                                question={this.state.question}
-                                selection={this.state.selection}
-                                answer={this.state.surveyData[this.state.displayIndex]}
-                            />
-                        </div>
+                            <div id='detailed-box'>
+                                <DetailedSurvey
+                                    question={this.state.question}
+                                    selection={this.state.selection}
+                                    answer={this.state.surveyData[this.state.displayIndex]}
+                                />
+                            </div>
                         </div>
                     </Grid>
                 </div>
@@ -272,8 +278,6 @@ class DataPage extends React.Component {
             </div>
         )
     }
-
-
 }
 
 

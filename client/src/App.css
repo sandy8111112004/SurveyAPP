@@ -2,9 +2,6 @@ body{
   height: 98vh;
   font-family: 'Raleway', sans-serif;
   background-color:#f3f4f4;
-  /* background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(93,231,247,1) 100%);
-  background-repeat: no-repeat; */
 }
 
 h1 {
