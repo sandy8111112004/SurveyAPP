@@ -21,9 +21,15 @@ require('./routes/api-routes')(app);
 mongoose.connect(process.env.MONGODB_URI || `${process.env.mongodb}`);
 
 
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.get("*", function(req, res) {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
+
+router.use(
+  function(req, res) {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  }
+)
 
 // Start the API server
 app.listen(PORT, function() {
